@@ -62,16 +62,36 @@ public class EscapeRoom
     "pickup", "p", "quit", "q", "replay", "help", "?"};
   
     // set up game
+
     boolean play = true;
-    while (play)
-    {
+    while (play){
       /* TODO: get all the commands working */
-	  /* Your code here */
+      /* Your code here */
+      System.out.print("Enter command: ");
+      String command = in.nextLine().trim().toLowerCase();
+      switch (command) {
+        case "right":
+          game.movePlayer(50,0);
+          break;
+        case "r":
+          game.movePlayer(50,0);
+          break;
+        case "up":
+          game.movePlayer(0,-50);
+          break;
+        case "down":
+          game.movePlayer(0,50);
+          break;
+        default:
+          System.out.println("Please Enter a Valid Command.");
+          break;
+      }
     
-      
+
+
     }
 
-  
+
 
     score += game.endGame();
 
