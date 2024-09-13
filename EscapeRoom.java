@@ -68,20 +68,61 @@ public class EscapeRoom
       /* TODO: get all the commands working */
       /* Your code here */
       System.out.print("Enter command: ");
-      String command = in.nextLine().trim().toLowerCase();
-      switch (command) {
+      String command = UserInput.getValidInput(validCommands);
+
+      switch (command) { 
+        /* currently supports "right", "left", "up", "down", "r", "l", "u", "d",
+      "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd" */
         case "right":
           game.movePlayer(50,0);
           break;
         case "r":
           game.movePlayer(50,0);
           break;
+        case "jumpleft":
+         game.movePlayer(-50,0);
+         break;
+        case "jl":
+         game.movePlayer(-50,0);
+         break;
+        case "jr":
+         game.movePlayer(-50,0);
+         break;
+        case "left":
+          game.movePlayer(-50,0);
+          break;
+        case "l":
+          game.movePlayer(-50,0);
+          break;
         case "up":
           game.movePlayer(0,-50);
+          break;
+        case "jump":
+          game.movePlayer(0,-50);
+          break;      
+        case "jumpup":
+          game.movePlayer(0,-50);
+          break;  
+        case "ju":
+          game.movePlayer(0,-50);
+          break;  
+        case "u":
+          game.movePlayer(0,-50);  
           break;
         case "down":
           game.movePlayer(0,50);
           break;
+        case "d":
+          game.movePlayer(0,50);
+          break;
+        case "jd":
+          game.movePlayer(0,50);
+          break;   
+        case "jumpdown":
+          game.movePlayer(0, 50);
+          break;
+        
+
         default:
           System.out.println("Please Enter a Valid Command.");
           break;
