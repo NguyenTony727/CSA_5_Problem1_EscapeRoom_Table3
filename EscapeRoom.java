@@ -163,6 +163,16 @@ public class EscapeRoom
         case "q":
           play = false;
           break;
+        
+        case "pickup":
+        case "p":
+          game.pickupPrize();
+          if (game.pickupPrize()<0){
+            score--;
+          }else {
+            score++;
+          }
+          break;
         case "help":
         case "?":
           System.out.println("right, r: move right" + "\n"+
