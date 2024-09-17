@@ -177,6 +177,7 @@ public class EscapeRoom
           "pickup, p: pick up the coin" + "\n" +
           "replay: replay the game" + "\n" +
           "help, ?: help command");
+          break;
         case "replay":
           game.replay();
           System.out.println("Game has been reset");
