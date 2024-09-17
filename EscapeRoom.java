@@ -49,10 +49,10 @@ public class EscapeRoom
     game.createBoard();
 
     // size of move
-    int m = 60; 
+    int m = 0; 
     // individual player moves
-    int px = 0;
-    int py = 0; 
+    int px = 60;
+    int py = 60; 
     
     int score = 0;
 
@@ -72,56 +72,114 @@ public class EscapeRoom
 
       switch (command) { 
         /* currently supports "right", "left", "up", "down", "r", "l", "u", "d",
-      "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd" */
+      "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd", "q", "quit" */
         case "right":
-          game.movePlayer(50,0);
+          game.movePlayer(px,0);
+          if (game.springTrap(px,0)>0){
+            score++;}
           break;
         case "r":
-          game.movePlayer(50,0);
+          game.movePlayer(px,0);
+          if (game.springTrap(px,0)>0){
+            score++;}
           break;
         case "jumpleft":
-         game.movePlayer(-50,0);
+         game.movePlayer(-2*px,0);
+         if (game.springTrap(-2*px,0)>0){
+            score++;}
          break;
         case "jl":
-         game.movePlayer(-50,0);
+         game.movePlayer(-2*px,0);
+         if (game.springTrap(-2*px,0)>0){
+            score++;}
          break;
         case "jr":
-         game.movePlayer(-50,0);
+         game.movePlayer(2*px,0);
+         if (game.springTrap(2*px,0)>0){
+            score++;}
          break;
+        case "jumpright":
+          game.movePlayer(2*px,0);
+          if (game.springTrap(2*px,0)>0){
+            score++;}
         case "left":
-          game.movePlayer(-50,0);
+          game.movePlayer(-px,0);
+          if (game.springTrap(-px,0)>0){
+            score++;}
           break;
         case "l":
-          game.movePlayer(-50,0);
+          game.movePlayer(-px,0);
+          if (game.springTrap(-px,0)>0){
+            score++;}
           break;
         case "up":
-          game.movePlayer(0,-50);
+          game.movePlayer(0,-px);
+          if (game.springTrap(0,-px)>0){
+            score++;}
           break;
         case "jump":
-          game.movePlayer(0,-50);
+          game.movePlayer(0,-2*px);
+          if (game.springTrap(0,-2*px)>0){
+            score++;}
           break;      
         case "jumpup":
-          game.movePlayer(0,-50);
+          game.movePlayer(0,-2*px);
+          if (game.springTrap(0,-2*px)>0){
+            score++;}
           break;  
         case "ju":
-          game.movePlayer(0,-50);
+          game.movePlayer(0,-2*px);
+          if (game.springTrap(0,-2*px)>0){
+            score++;}
           break;  
         case "u":
-          game.movePlayer(0,-50);  
+          game.movePlayer(0,-px); 
+          if (game.springTrap(0,-px)>0){
+            score++; }
           break;
         case "down":
-          game.movePlayer(0,50);
+          game.movePlayer(0,px);
+          if (game.springTrap(0,px)>0){
+            score++;}
           break;
         case "d":
-          game.movePlayer(0,50);
+          game.movePlayer(0,px);
+          if (game.springTrap(0,px)>0){
+            score++;}
           break;
         case "jd":
-          game.movePlayer(0,50);
+          game.movePlayer(0,2*px);
+          if (game.springTrap(0,2*px)>0){
+            score++;}
           break;   
         case "jumpdown":
-          game.movePlayer(0, 50);
+          game.movePlayer(0, 2*px);
+          if (game.springTrap(0,2*px)>0){
+            score++;}
           break;
-        
+        case "quit":
+          play = false;
+          break;
+        case "q":
+          play = false;
+          break;
+        case "help":
+        case "?":
+          System.out.println("right, r: move right" + "\n"+
+          "leftl: move left"+ "\n"+
+         "up, u: move up" + "\n" +
+          "down, d: move down" + "\n" +
+         "jumpleft, jl: jump left" + "\n" +
+          "jumpright, jr: jump right" + "\n" +
+         "jumpdown, jd: jump down" + "\n" +
+          "jumpup, ju: jump up" + "\n" +
+          "quit, q: quit the game" + "\n" +
+          "pickup, p: pick up the coin" + "\n" +
+          "replay: replay the game" + "\n" +
+          "help, ?: help command");
+        case "replay":
+          game.replay();
+          System.out.println("Game has been reset");
 
         default:
           System.out.println("Please Enter a Valid Command.");
