@@ -181,6 +181,7 @@ public class EscapeRoom
         case "replay":
           game.replay();
           System.out.println("Game has been reset");
+          System.out.println("Score has been set to 0");
 
         default:
           System.out.println("Please Enter a Valid Command.");
