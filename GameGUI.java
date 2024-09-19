@@ -13,6 +13,12 @@ import javax.imageio.ImageIO;
 
 import java.util.Random;
 
+// added for game music
+import javax.sound.sampled.*;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 /**
  * A Game board on which to place and move players.
  * 
@@ -31,6 +37,8 @@ public class GameGUI extends JComponent
   private static final int START_LOC_X = 15;
   private static final int START_LOC_Y = 15;
   
+  private Clip clip;
+
   // initial placement of player
   int x = START_LOC_X; 
   int y = START_LOC_Y;
@@ -68,7 +76,8 @@ public class GameGUI extends JComponent
    */
   public GameGUI()
   {
-    
+    playMusic("doodle.wav");
+
     try {
       bgImage = ImageIO.read(new File("grid.png"));      
     } catch (Exception e) {
@@ -108,6 +117,19 @@ public class GameGUI extends JComponent
   * After a GameGUI object is created, this method adds the walls, prizes, and traps to the gameboard.
   * Note that traps and prizes may occupy the same location.
   */
+
+  private void playMusic(String filePath) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath));
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the music
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.err.println("Unsupported Audio file"); 
+        }
+  }
+
   public void createBoard()
   {
     traps = new Rectangle[totalTraps];
