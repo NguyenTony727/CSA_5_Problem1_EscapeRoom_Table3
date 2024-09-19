@@ -49,7 +49,7 @@ public class EscapeRoom
     game.createBoard();
 
     // size of move
-    int m = 50; 
+    int m = 0; 
     // individual player moves
     int px = 30;
     int py = 30; 
@@ -74,6 +74,7 @@ public class EscapeRoom
         case "right":
         case "r":
         game.movePlayer(px, 0);
+        game.springTrap(px, 0);
         if (game.movePlayer(px, 0)<0) {
           score--;
         } else if (game.isTrap(px, 0)) {
@@ -87,6 +88,7 @@ public class EscapeRoom
         case "jumpleft":
         case "jl":
          game.movePlayer(-2*px,0);
+         game.springTrap(-2*px,0);
          if (game.movePlayer(-2*px, 0)<0){
           score--;
          }else if (game.isTrap(px,0)){
@@ -99,6 +101,7 @@ public class EscapeRoom
         case "jr":
         case "jumpright":
           game.movePlayer(2*px,0);
+          game.springTrap(2*px,0);
           if (game.movePlayer(2*px,0)<0){
             score--;
           }else if (game.isTrap(px,0)){
@@ -112,6 +115,7 @@ public class EscapeRoom
         case "left":
         case "l":
           game.movePlayer(-px,0);
+          game.springTrap(px,0);
           if (game.movePlayer(-px,0)<0){
             score--;
           }else if (game.isTrap(-px,0)){ // checks if there is a trap
@@ -125,6 +129,7 @@ public class EscapeRoom
         case "jumpup":
         case "ju":
           game.movePlayer(0,-2*py);
+          game.springTrap(0,-2*py);
           if (game.movePlayer(0, -2*py) <0){
             score--;
           } else if (game.isTrap(0,-2*py)) {
@@ -138,6 +143,7 @@ public class EscapeRoom
         case "up":  
         case "u":
           game.movePlayer(0,-py);
+          game.springTrap(0,py);
           if (game.movePlayer(0,-py) <0) {
             score--;
           } else if (game.isTrap(0, py))
@@ -150,6 +156,7 @@ public class EscapeRoom
         case "down":
         case "d":
           game.movePlayer(0,py);
+          game.springTrap(0,py);
           if (game.movePlayer(0,py) <0) {
             score--;
           } else if (game.isTrap(0, py))
@@ -162,6 +169,7 @@ public class EscapeRoom
         case "jd":
         case "jumpdown":
           game.movePlayer(0, 2*py);
+          game.springTrap(0,py);
           if (game.movePlayer(0,2*py) < 0) {
             score--;
           } else if (game.isTrap(0,py))
