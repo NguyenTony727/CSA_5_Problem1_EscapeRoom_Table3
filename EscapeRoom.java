@@ -84,6 +84,7 @@ public class EscapeRoom
             score--;
           }
         }
+        System.out.println("score=" + score);
         break;
         case "jumpleft":
         case "jl":
@@ -97,6 +98,7 @@ public class EscapeRoom
             }else {
               score--;
             }
+        System.out.println("score=" + score);
          break;
         case "jr":
         case "jumpright":
@@ -111,6 +113,7 @@ public class EscapeRoom
               score--;
             }
           }
+          System.out.println("score=" + score);
           break;
         case "left":
         case "l":
@@ -124,6 +127,7 @@ public class EscapeRoom
             }else {
               score--; // if not then penalty
             }
+          System.out.println("score=" + score);
           break;
         case "jump":
         case "jumpup":
@@ -139,6 +143,7 @@ public class EscapeRoom
               score--;
             }
           }
+          System.out.println("score=" + score);
           break;
         case "up":  
         case "u":
@@ -152,6 +157,7 @@ public class EscapeRoom
             else {
               score--;
             }
+          System.out.println("score=" + score);
           break;
         case "down":
         case "d":
@@ -165,6 +171,7 @@ public class EscapeRoom
             else {
               score--;
             }
+        System.out.println("score=" + score);
         break;
         case "jd":
         case "jumpdown":
@@ -177,6 +184,7 @@ public class EscapeRoom
               score++;} else{
                 score--;
               }
+          System.out.println("score=" + score);
           break;
         case "pickup":
         case "p":
@@ -185,6 +193,7 @@ public class EscapeRoom
           }else {
             score++;
           }
+          System.out.println("score=" + score);
           break;
         case "help":
         case "?":
@@ -205,6 +214,7 @@ public class EscapeRoom
           game.replay();
           System.out.println("Game has been reset");
           System.out.println("Score has been set to 0");
+          System.out.println("score=" + score);
           break;
 
         case "quit":
@@ -216,6 +226,8 @@ public class EscapeRoom
             score = Math.abs(score);
           } else {
             score--;
+            game.stopMusic();
+            game.playMusic("gameover.wav");
           }
   
             
@@ -224,6 +236,7 @@ public class EscapeRoom
         default:
           System.out.println("Please Enter a Valid Command.");
           score--;
+          System.out.println("score=" + score);
           break;
       }
     

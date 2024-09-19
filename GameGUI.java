@@ -118,7 +118,7 @@ public class GameGUI extends JComponent
   * Note that traps and prizes may occupy the same location.
   */
 
-  private void playMusic(String filePath) {
+  public void playMusic(String filePath) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath));
             clip = AudioSystem.getClip();
@@ -130,6 +130,11 @@ public class GameGUI extends JComponent
         }
   }
 
+  public void stopMusic() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+        }
+    }
   public void createBoard()
   {
     traps = new Rectangle[totalTraps];
@@ -388,7 +393,6 @@ public class GameGUI extends JComponent
     int win = playerAtEnd();
   
     setVisible(false);
-    frame.dispose();
     return win;
   }
 
