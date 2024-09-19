@@ -49,124 +49,129 @@ public class EscapeRoom
     game.createBoard();
 
     // size of move
-    int m = 0; 
+    int m = 50; 
     // individual player moves
-    int px = 60;
-    int py = 60; 
+    int px = 30;
+    int py = 30; 
     
     int score = 0;
 
     Scanner in = new Scanner(System.in);
+
     String[] validCommands = { "right", "left", "up", "down", "r", "l", "u", "d",
-    "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
+    "jumpright", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
     "pickup", "p", "quit", "q", "replay", "help", "?"};
-  
+ 
     // set up game
 
     boolean play = true;
     while (play){
-      /* TODO: get all the commands working */
       /* Your code here */
       System.out.print("Enter command: ");
       String command = UserInput.getValidInput(validCommands);
 
       switch (command) { 
-        /* currently supports "right", "left", "up", "down", "r", "l", "u", "d",
-      "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd", "q", "quit" */
         case "right":
-          game.movePlayer(px,0);
-          if (game.springTrap(px,0)>0){
-            score++;}
-          break;
         case "r":
-          game.movePlayer(px,0);
-          if (game.springTrap(px,0)>0){
-            score++;}
-          break;
+        game.movePlayer(px, 0);
+        if (game.movePlayer(px, 0)<0) {
+          score--;
+        } else if (game.isTrap(px, 0)) {
+          if (game.springTrap(px, 0) > 0) {
+            score++;
+          } else {
+            score--;
+          }
+        }
+        break;
         case "jumpleft":
-         game.movePlayer(-2*px,0);
-         if (game.springTrap(-2*px,0)>0){
-            score++;}
-         break;
         case "jl":
          game.movePlayer(-2*px,0);
-         if (game.springTrap(-2*px,0)>0){
+         if (game.movePlayer(-2*px, 0)<0){
+          score--;
+         }else if (game.isTrap(px,0)){
+            if (game.springTrap(-2*px,0)>0){
             score++;}
+            }else {
+              score--;
+            }
          break;
         case "jr":
-         game.movePlayer(2*px,0);
-         if (game.springTrap(2*px,0)>0){
-            score++;}
-         break;
         case "jumpright":
           game.movePlayer(2*px,0);
-          if (game.springTrap(2*px,0)>0){
-            score++;}
-        case "left":
-          game.movePlayer(-px,0);
-          if (game.springTrap(-px,0)>0){
-            score++;}
+          if (game.movePlayer(2*px,0)<0){
+            score--;
+          }else if (game.isTrap(px,0)){
+            if (game.springTrap(px,0)>0){
+            score++;} 
+            else {
+              score--;
+            }
+          }
           break;
+        case "left":
         case "l":
           game.movePlayer(-px,0);
-          if (game.springTrap(-px,0)>0){
+          if (game.movePlayer(-px,0)<0){
+            score--;
+          }else if (game.isTrap(-px,0)){ // checks if there is a trap
+            if (game.springTrap(px,0)>0){ // then spring
             score++;}
-          break;
-        case "up":
-          game.movePlayer(0,-px);
-          if (game.springTrap(0,-px)>0){
-            score++;}
+            }else {
+              score--; // if not then penalty
+            }
           break;
         case "jump":
-          game.movePlayer(0,-2*px);
-          if (game.springTrap(0,-2*px)>0){
-            score++;}
-          break;      
         case "jumpup":
-          game.movePlayer(0,-2*px);
-          if (game.springTrap(0,-2*px)>0){
-            score++;}
-          break;  
         case "ju":
-          game.movePlayer(0,-2*px);
-          if (game.springTrap(0,-2*px)>0){
-            score++;}
-          break;  
+          game.movePlayer(0,-2*py);
+          if (game.movePlayer(0, -2*py) <0){
+            score--;
+          } else if (game.isTrap(0,-2*py)) {
+            if (game.springTrap(0,-2*py)>0){
+              score++;} 
+            else {
+              score--;
+            }
+          }
+          break;
+        case "up":  
         case "u":
-          game.movePlayer(0,-px); 
-          if (game.springTrap(0,-px)>0){
-            score++; }
+          game.movePlayer(0,-py);
+          if (game.movePlayer(0,-py) <0) {
+            score--;
+          } else if (game.isTrap(0, py))
+            if (game.springTrap(0,py)>0){
+            score++; } 
+            else {
+              score--;
+            }
           break;
         case "down":
-          game.movePlayer(0,px);
-          if (game.springTrap(0,px)>0){
-            score++;}
-          break;
         case "d":
-          game.movePlayer(0,px);
-          if (game.springTrap(0,px)>0){
-            score++;}
-          break;
+          game.movePlayer(0,py);
+          if (game.movePlayer(0,py) <0) {
+            score--;
+          } else if (game.isTrap(0, py))
+            if (game.springTrap(0,py)>0){
+            score++; } 
+            else {
+              score--;
+            }
+        break;
         case "jd":
-          game.movePlayer(0,2*px);
-          if (game.springTrap(0,2*px)>0){
-            score++;}
-          break;   
         case "jumpdown":
-          game.movePlayer(0, 2*px);
-          if (game.springTrap(0,2*px)>0){
-            score++;}
+          game.movePlayer(0, 2*py);
+          if (game.movePlayer(0,2*py) < 0) {
+            score--;
+          } else if (game.isTrap(0,py))
+            if (game.springTrap(0,py)>0){
+              score++;} else{
+                score--;
+              }
           break;
-        case "quit":
-          play = false;
-          break;
-        case "q":
-          play = false;
-          break;
-        
         case "pickup":
         case "p":
-          game.pickupPrize();
           if (game.pickupPrize()<0){
             score--;
           }else {
@@ -192,9 +197,25 @@ public class EscapeRoom
           game.replay();
           System.out.println("Game has been reset");
           System.out.println("Score has been set to 0");
+          break;
 
+        case "quit":
+        case "q":
+          game.endGame();
+          play = false;
+          if (game.endGame() > 0) {
+            score++;
+            score = Math.abs(score);
+          } else {
+            score--;
+          }
+  
+            
+        break;
+          
         default:
           System.out.println("Please Enter a Valid Command.");
+          score--;
           break;
       }
     
