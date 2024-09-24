@@ -221,7 +221,7 @@ public class EscapeRoom
         case "q":
           game.endGame();
           play = false;
-          if (game.endGame() > 0) {
+          if ((game.endGame() > 0) && (score>0)) {
             score++;
             score = Math.abs(score);
           } else {
